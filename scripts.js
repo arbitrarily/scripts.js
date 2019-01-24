@@ -3,7 +3,9 @@
 
 	$(function () {
 
-		jQuery.fn.load = function(callback){ $(window).on("load", callback) };
+		jQuery.fn.load = function(callback){
+			$(window).on("load", callback);
+		};
 
 		var ######## = {
 
@@ -11,7 +13,8 @@
 
 			init: function() {
 				this.fonts();
-				// this.magnific();
+				// this.magnific_image();
+				// this.magnific_video();
 				// this.nav_toggle();
 				// this.match_height();
 				// this.flexslider();
@@ -48,7 +51,7 @@
 				}, 1000);
 			},
 
-			magnific: function() {
+			magnific_image: function() {
 				$("###").not(".grid__item--nav").magnificPopup({
 					type: "image",
 					mainClass: "mfp-with-zoom",
@@ -65,6 +68,29 @@
 					},
 					closeBtnInside: false,
 					closeOnContentClick: true
+				});
+			},
+
+			magnific_video: function() {
+				$(".youtube").magnificPopup({
+					items: {
+						src: "https://www.youtube.com/watch?v=###"
+					},
+					type: "iframe",
+					iframe: {
+						markup: "<div class='mfp-iframe-scaler'>" +
+							"<div class='mfp-close'></div>" +
+							"<iframe class='mfp-iframe' frameborder='0' allowfullscreen></iframe>" +
+							"</div>",
+						patterns: {
+							youtube: {
+								index: "youtube.com/",
+								id: "v=",
+								src: "//www.youtube.com/embed/%id%?autoplay=1"
+							}
+						},
+						srcAction: "iframe_src",
+					}
 				});
 			},
 
@@ -117,6 +143,7 @@
 				});
 			},
 
+
 			smooth_scroll: function() {
 				$("a[href*='#']").each(function() {
 					$(this).on(########.touch, function() {
@@ -135,37 +162,15 @@
 				});
 			},
 
-			magnific: function() {
-				$(".youtube").magnificPopup({
-					items: {
-						src: "https://www.youtube.com/watch?v=###"
-					},
-					type: "iframe",
-					iframe: {
-						markup: "<div class='mfp-iframe-scaler'>" +
-							"<div class='mfp-close'></div>" +
-							"<iframe class='mfp-iframe' frameborder='0' allowfullscreen></iframe>" +
-							"</div>",
-						patterns: {
-							youtube: {
-								index: "youtube.com/",
-								id: "v=",
-								src: "//www.youtube.com/embed/%id%?autoplay=1"
-							}
-						},
-						srcAction: "iframe_src",
-					}
-				});
-			},
 
 			match_height: function() {
 				var options = {
 					byRow: true,
-					property: 'height',
+					property: "height",
 					target: null,
 					remove: false
 				};
-				$('.equal').matchHeight(options);
+				$(".equal").matchHeight(options);
 			}
 
 		};
@@ -176,9 +181,7 @@
 			$("body").addClass("font-active");
 		});
 
-		$(window).resize(function() {
-
-		});
+		$(window).resize(function() {});
 
 	});
 
